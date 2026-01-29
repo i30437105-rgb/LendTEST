@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pallete AI — AI-Powered Color Palette Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <div class="logo-circle"></div>
+                        <div class="logo-circle-inner"></div>
+                    </div>
+                    <span class="logo-text">Pallete AI</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#" class="nav-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        Features
+                        <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        Tools
+                        <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="btn-new-palette">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+                    New Palette
+                </a>
+                <a href="#" class="btn-signin">Sign In</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-left">
+                <h1 class="hero-title">AI-Powered, Fast Color Palette Generator!</h1>
+                <p class="hero-subtitle">Create the perfect palette or get inspired by thousands of beautiful color schemes.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">Start the generator!</a>
+                    <a href="#" class="btn-secondary">Explore trending palettes</a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="explore-label">
+                    <span>EXPLORE</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                </div>
+                <div class="hero-card">
+                    <div class="palette-display">
+                        <!-- Main color blocks -->
+                        <div class="palette-main">
+                            <div class="palette-block block-yellow"></div>
+                            <div class="palette-block block-orange-big"></div>
+                            <div class="palette-block block-crimson-big"></div>
+                        </div>
+                        <!-- Small grid overlay -->
+                        <div class="palette-grid">
+                            <div class="grid-row">
+                                <div class="grid-item" style="background: #E8A020;"></div>
+                                <div class="grid-item" style="background: #C73050;"></div>
+                                <div class="grid-item" style="background: #F08050;"></div>
+                                <div class="grid-item" style="background: #E8A020;"></div>
+                            </div>
+                            <div class="grid-row">
+                                <div class="grid-item" style="background: #C73050;"></div>
+                                <div class="grid-item" style="background: #E8A020;"></div>
+                                <div class="grid-item" style="background: #F08050;"></div>
+                                <div class="grid-item" style="background: #C73050;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-shape"></div>
+                <div class="make-palette-label">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+                    <span>MAKE A PALETTE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
