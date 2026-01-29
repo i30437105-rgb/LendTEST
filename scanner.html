@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scanner — MetodZMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,6 +18,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            font-family: 'Manrope', sans-serif;
         }
 
         .scanner-wrap {
@@ -56,22 +58,46 @@
             inset: 0;
             background: #ffffff;
             clip-path: inset(0 0 100% 0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 4px;
+            z-index: 3;
         }
 
-        .cell-icon {
+        .cell-white .cell-icon-color {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 4px;
+        }
+
+        .cell-label {
+            font-family: 'Manrope', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            color: #1a1a2e;
+            text-align: center;
+            line-height: 1.2;
+            padding: 0 3px;
+        }
+
+        .cell-icon-dark {
             position: absolute;
             inset: 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            z-index: 2;
+            justify-content: flex-end;
+            padding-bottom: 20px;
+            z-index: 1;
         }
 
-        .cell-icon img {
-            width: 36px;
-            height: 36px;
-            filter: brightness(0) invert(1);
-            opacity: 0.85;
+        .cell-icon-dark img {
+            width: 70px;
+            height: 70px;
+            filter: grayscale(1) brightness(1.8);
+            opacity: 0.6;
         }
 
         .scan-line {
@@ -109,26 +135,29 @@
         <div class="scan-line"></div>
         <div class="grid">
             <!-- Ряд 1: Рынок, Стратегия, Маркетолог, Конкуренты, Юнит-экономика -->
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div><div class="cell-icon"><img src="assets/icons/scanner/globe.svg" alt="Рынок"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div><div class="cell-icon"><img src="assets/icons/scanner/chess-knight.svg" alt="Стратегия"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div><div class="cell-icon"><img src="assets/icons/scanner/megaphone.svg" alt="Маркетолог"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div><div class="cell-icon"><img src="assets/icons/scanner/binoculars.svg" alt="Конкуренты"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div><div class="cell-icon"><img src="assets/icons/scanner/coins.svg" alt="Юнит-экономика"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/market.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/market.png" alt=""><span class="cell-label">Рынок</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/strategy.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/strategy.png" alt=""><span class="cell-label">Стратегия</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/marketer.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/marketer.png" alt=""><span class="cell-label">Маркетолог</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/binoculars.svg" alt=""></div><div class="cell-white"><span class="cell-label">Конкуренты</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/coins.svg" alt=""></div><div class="cell-white"><span class="cell-label">Юнит-экономика</span></div></div>
+            <!-- Ряд 2: SWOT, Воронка, JTBD, 4P, Портрет ЦА -->
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">SWOT-анализ</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">Воронка</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">JTBD</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">4P</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">Портрет ЦА</span></div></div>
+            <!-- Ряд 3: Каналы рекламы, CJM, HADI, ABCDX, Cross-sale -->
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">Каналы рекламы</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">CJM</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">HADI</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">ABCDX</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">Cross-sale</span></div></div>
+            <!-- Ряд 4: Продукт, Интервью, РОП, CVP, Подрядчик -->
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">Продукт</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">Интервью</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">РОП</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">CVP</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">Подрядчик</span></div></div>
         </div>
     </div>
 

@@ -126,11 +126,21 @@
 - Padding: 12px (белая рамка вокруг контента)
 
 ## Иконки
-- **Библиотека:** Lucide (v0.563.0, ISC лицензия) — ЕДИНСТВЕННЫЙ источник
+- **Библиотека:** Lucide (v0.563.0, ISC лицензия) — ЕДИНСТВЕННЫЙ источник для UI-иконок
 - **Стиль:** rounded stroke, stroke-width 2 (стандарт), 1.5 (крупные иконки)
-- **Хранение:** `/assets/icons/` — SVG-файлы
+- **Хранение:** `/assets/icons/` — SVG-файлы, `/assets/icons/scanner/` — иконки сканера (PNG от заказчика + Lucide SVG)
 - **Подключение:** через `<img src="assets/icons/...">`, НЕ inline SVG
-- **Имеющиеся иконки:** arrow-up-right, layers, settings, circle-plus, chevron-down, crosshair, zap, clock, clipboard-list, rocket, circle-help
+- **Имеющиеся иконки (Hero):** arrow-up-right, layers, settings, circle-plus, chevron-down, crosshair, zap, clock, clipboard-list, rocket, circle-help
+- **Иконки сканера (цветные PNG от заказчика):** market.png, strategy.png, marketer.png
+- **Иконки сканера (Lucide SVG):** binoculars.svg, coins.svg
+
+### Иконки сканера — спецификация
+- **Размер:** 70×70px
+- **Двухслойная система:**
+  - Тёмный слой (`cell-icon-dark`): `filter: grayscale(1) brightness(1.8)`, `opacity: 0.6`, flex-end, padding-bottom 20px
+  - Цветной слой (`cell-icon-color` внутри `cell-white`): без фильтров, flex-end, margin-bottom 4px
+- **Формат:** PNG (цветные от заказчика), SVG (Lucide для placeholder)
+- **Подписи:** Manrope 10px/500, color #1a1a2e, text-align center, padding 0 3px
 
 ## Адаптивность
 - Мобайл: < 768px
