@@ -13,7 +13,7 @@
 - **Основной текст:** #1a1a2e (тёмно-синий/чёрный)
 - **Вторичный текст (дескрипторы, надзаголовки):** #7a7f8a (серый)
 - **Акцентный (хайлайт):** #c8f542 (кислотно-лаймовый) — для выделения ключевых слов
-- **CTA-градиент:** linear-gradient(135deg, #8b5cf6, #d946a8, #f43f5e) — фиолетовый → розовый → красный
+- **CTA-кнопка фон:** #1a1a2e (чёрный), hover: #c8f542 (лаймовый)
 - **Карточки:** #ffffff, border-radius 18px, тень 0 25px 60px rgba(0,0,0,0.10)
 - **Границы кнопок:** #d1d5db (вторичная кнопка)
 - **Декоративный элемент:** #a8b5a0 (оливково-серый)
@@ -22,14 +22,16 @@
 ## Шрифты
 
 ### Кириллические шрифты (утверждены)
-- **Надзаголовки и кириллический body-текст:** Manrope (Google Fonts, weights 300–700) — утверждён заказчиком
-- Chakra Petch НЕ поддерживает кириллицу — для русских текстов использовать Manrope
-- ClashDisplay — проверить при подстановке русских заголовков; если не поддерживает — заменить на Manrope или Inter
+- **Заголовки H1 (кириллица):** Unbounded (Google Fonts, weights 300–700) — утверждён заказчиком, замена ClashDisplay
+- **Надзаголовки, подзаголовки, буллиты, CTA-кнопки (кириллица):** Manrope (Google Fonts, weights 300–700)
+- ClashDisplay НЕ поддерживает кириллицу — заменён на Unbounded для заголовков
+- Chakra Petch НЕ поддерживает кириллицу — заменён на Manrope для подзаголовков и кнопок
 
 ### Текущие шрифты
-- **Заголовки (H1, H2, H3):** ClashDisplay (Variable, weight 200–700), файл: `/assets/fonts/ClashDisplay-Variable.ttf`
-- **Надзаголовки (кириллица):** Manrope (Google Fonts, weight 600)
-- **Навигация, кнопки, подписи, body-текст (англ):** Chakra Petch (Google Fonts, weights 300–700)
+- **Заголовки H1 (кириллица):** Unbounded (Google Fonts, weight 600)
+- **Логотип:** ClashDisplay (Variable, weight 600), файл: `/assets/fonts/ClashDisplay-Variable.ttf`
+- **Надзаголовки, подзаголовки, буллиты, CTA-кнопки (кириллица):** Manrope (Google Fonts, weight 400–600)
+- **Лейблы, навигация (англ):** Chakra Petch (Google Fonts, weights 300–700)
 - **Fallback:** sans-serif
 
 ## Сетка и отступы
@@ -61,8 +63,8 @@
 - Счётчик цифры: пульсация scale(1.3), зацикленный (0→5, 1 шаг/сек, пауза 2 сек)
 
 ### Заголовок H1
-- Шрифт: ClashDisplay
-- Размер: **69px** (десктоп), 38px (мобайл)
+- Шрифт: Unbounded (замена ClashDisplay для кириллицы)
+- Размер: **55px** (десктоп), 38px (мобайл)
 - Weight: **600** (semibold, НЕ 700)
 - Line-height: 1.1
 - Letter-spacing: -2px
@@ -70,22 +72,22 @@
 
 ### Хайлайт-подложки в заголовке
 - Реализация: `::before` pseudo-element, position absolute
-- Лаймовый: background #c8f542, rotate(4.5deg), top 22%, bottom 12%
-- Серый: background rgba(0,0,0,0.07), rotate(4.5deg), top 22%, bottom 12%
+- Лаймовый (.highlight-lime): background #c8f542, rotate(4.5deg), top 22%, bottom 12% — слово "Краш-тест:"
+- Серый (.highlight-gray): background rgba(0,0,0,0.07), rotate(4.5deg), top 22%, bottom 12% — слово "маркетинг"
 - Границы: left 0, right 0 (строго по слову)
 - border-radius: 4px
 - z-index: -1
 
 ### Дескриптор (подзаголовок)
-- Шрифт: Chakra Petch
+- Шрифт: Manrope (замена Chakra Petch для кириллицы)
 - Размер: **20px** (десктоп), 15px (мобайл)
 - Weight: 400
 - Line-height: **1.4**
 - Стиль: **normal** (НЕ italic)
 - Цвет: #7a7f8a
-- Max-width: 460px
+- Max-width: 520px
 
-### Лейблы (MAKE A PALETTE и подобные)
+### Лейблы (START SCANNER и подобные)
 - Шрифт: Chakra Petch
 - Размер: 19px
 - Weight: **400** (тонкий)
@@ -97,17 +99,24 @@
 - Weight: 400
 - Line-height: 1.4–1.6
 
+### Буллиты (hero-bullets)
+- Шрифт: Manrope
+- Размер: **15px** (десктоп)
+- Weight: **400**
+- Цвет: #7a7f8a
+- Расположение: горизонтально, gap 24px
+- Иконки: Lucide (clock, clipboard-list), 18px, opacity 0.6
+
 ### Small
 - Размер: 14px
 
 ## Кнопки
-- Высота: 48–56px
-- Скругление: 12px
-- Паддинг: 16px 32px
-- Шрифт: Chakra Petch 15px 600
-- **CTA (primary):** градиент фон, белый текст
-- **Secondary:** белый фон, тёмный текст, border 1.5px solid #d1d5db
-- **Hover:** scale(1.04), glow-тень, transition 0.25s ease
+- **CTA (primary):** чёрный фон (#1a1a2e), белый текст, Manrope 17px/600
+- Паддинг: 24px 36px
+- Скругление: 16px
+- Иконка: zap (молния, Lucide), заливка, белая, 22px — слева от текста
+- **Hover:** фон лаймовый (#c8f542), текст и иконка → тёмные (#1a1a2e), glow-тень rgba(200,245,66,0.35), scale(1.04)
+- **Secondary:** убрана (v19) — на Hero только одна CTA
 
 ## Карточки
 - Фон: #ffffff
@@ -121,7 +130,7 @@
 - **Стиль:** rounded stroke, stroke-width 2 (стандарт), 1.5 (крупные иконки)
 - **Хранение:** `/assets/icons/` — SVG-файлы
 - **Подключение:** через `<img src="assets/icons/...">`, НЕ inline SVG
-- **Имеющиеся иконки:** arrow-up-right, layers, settings, circle-plus, chevron-down, crosshair
+- **Имеющиеся иконки:** arrow-up-right, layers, settings, circle-plus, chevron-down, crosshair, zap, clock, clipboard-list, rocket, circle-help
 
 ## Адаптивность
 - Мобайл: < 768px

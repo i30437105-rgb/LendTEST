@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner — MetodZMS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f5f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .scanner-wrap {
+            position: relative;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .cell {
+            width: 96px;
+            height: 96px;
+            border-radius: 18px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .cell:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 16px rgba(26, 26, 46, 0.15);
+        }
+
+        .cell-bg {
+            position: absolute;
+            inset: 0;
+            background: #1a1a2e;
+        }
+
+        .cell-white {
+            position: absolute;
+            inset: 0;
+            background: #ffffff;
+            clip-path: inset(0 0 100% 0);
+        }
+
+        .cell-icon {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .cell-icon img {
+            width: 36px;
+            height: 36px;
+            filter: brightness(0) invert(1);
+            opacity: 0.85;
+        }
+
+        .scan-line {
+            position: absolute;
+            left: -16px;
+            right: -16px;
+            height: 2px;
+            background: rgba(200, 245, 66, 0.9);
+            box-shadow:
+                0 0 10px rgba(200, 245, 66, 0.7),
+                0 0 28px rgba(200, 245, 66, 0.35),
+                0 0 56px rgba(200, 245, 66, 0.18);
+            top: 0;
+            animation: scanDown 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards;
+            z-index: 10;
+            cursor: grab;
+        }
+
+        .scan-line.dragging {
+            cursor: grabbing;
+        }
+
+        @keyframes scanDown {
+            0% {
+                top: -4px;
+            }
+            100% {
+                top: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanner-wrap">
+        <div class="scan-line"></div>
+        <div class="grid">
+            <!-- Ряд 1: Рынок, Стратегия, Маркетолог, Конкуренты, Юнит-экономика -->
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div><div class="cell-icon"><img src="assets/icons/scanner/globe.svg" alt="Рынок"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div><div class="cell-icon"><img src="assets/icons/scanner/chess-knight.svg" alt="Стратегия"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div><div class="cell-icon"><img src="assets/icons/scanner/megaphone.svg" alt="Маркетолог"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div><div class="cell-icon"><img src="assets/icons/scanner/binoculars.svg" alt="Конкуренты"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div><div class="cell-icon"><img src="assets/icons/scanner/coins.svg" alt="Юнит-экономика"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-white"></div></div>
+        </div>
+    </div>
+
+    <script>
+        const scanLine = document.querySelector('.scan-line');
+        const grid = document.querySelector('.grid');
+        const cells = document.querySelectorAll('.cell');
+        let isDragging = false;
+
+        function updateCells() {
+            const lineRect = scanLine.getBoundingClientRect();
+            const lineY = lineRect.top + lineRect.height / 2;
+
+            cells.forEach(cell => {
+                const cellRect = cell.getBoundingClientRect();
+                const whiteLayer = cell.querySelector('.cell-white');
+                const cellTop = cellRect.top;
+                const cellBottom = cellRect.bottom;
+                const cellHeight = cellRect.height;
+
+                if (lineY <= cellTop) {
+                    whiteLayer.style.clipPath = 'inset(0 0 100% 0)';
+                } else if (lineY >= cellBottom) {
+                    whiteLayer.style.clipPath = 'inset(0 0 0 0)';
+                } else {
+                    const pct = ((lineY - cellTop) / cellHeight) * 100;
+                    whiteLayer.style.clipPath = `inset(0 0 ${100 - pct}% 0)`;
+                }
+            });
+        }
+
+        const animObserver = setInterval(() => updateCells(), 30);
+        setTimeout(() => clearInterval(animObserver), 4000);
+
+        scanLine.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            const currentTop = scanLine.getBoundingClientRect().top - grid.getBoundingClientRect().top;
+            scanLine.style.animation = 'none';
+            scanLine.style.top = currentTop + 'px';
+            isDragging = true;
+            scanLine.classList.add('dragging');
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const rect = grid.getBoundingClientRect();
+            let y = e.clientY - rect.top;
+            y = Math.max(0, Math.min(y, rect.height));
+            scanLine.style.top = y + 'px';
+            updateCells();
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            scanLine.classList.remove('dragging');
+        });
+    </script>
+</body>
+</html>
