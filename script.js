@@ -99,11 +99,24 @@
     var cells = grid.querySelectorAll('.cell');
     var isDragging = false;
 
+    function getVisibleMaxY() {
+        var gridRect = grid.getBoundingClientRect();
+        var maxBottom = 0;
+        cells.forEach(function(cell) {
+            if (cell.offsetParent === null) return; // hidden via display:none
+            var r = cell.getBoundingClientRect();
+            var bottom = r.bottom - gridRect.top;
+            if (bottom > maxBottom) maxBottom = bottom;
+        });
+        return maxBottom || gridRect.height;
+    }
+
     function updateCells() {
         var lineRect = scanLine.getBoundingClientRect();
         var lineY = lineRect.top + lineRect.height / 2;
 
         cells.forEach(function(cell) {
+            if (cell.offsetParent === null) return;
             var cellRect = cell.getBoundingClientRect();
             var whiteLayer = cell.querySelector('.cell-white');
             var cellTop = cellRect.top;
@@ -130,7 +143,7 @@
     }
 
     var animObserver = setInterval(function() { updateCells(); }, 30);
-    setTimeout(function() { clearInterval(animObserver); }, 4000);
+    setTimeout(function() { clearInterval(animObserver); }, 7000);
 
     scanLine.addEventListener('mousedown', function(e) {
         e.preventDefault();
@@ -145,7 +158,8 @@
         if (!isDragging) return;
         var rect = grid.getBoundingClientRect();
         var y = e.clientY - rect.top;
-        y = Math.max(0, Math.min(y, rect.height));
+        var maxY = getVisibleMaxY();
+        y = Math.max(0, Math.min(y, maxY));
         scanLine.style.top = y + 'px';
         updateCells();
     });
@@ -171,7 +185,8 @@
         var touch = e.touches[0];
         var rect = grid.getBoundingClientRect();
         var y = touch.clientY - rect.top;
-        y = Math.max(0, Math.min(y, rect.height));
+        var maxY = getVisibleMaxY();
+        y = Math.max(0, Math.min(y, maxY));
         scanLine.style.top = y + 'px';
         updateCells();
     }, { passive: false });

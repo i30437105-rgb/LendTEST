@@ -51,7 +51,34 @@
 - Боковые отступы: 20px
 - **Мобильные значения НЕ удваивать** — они корректируются отдельно
 
-## Типографика (утверждённые значения Hero)
+## Типографика — Иерархия уровней (утверждено v28)
+
+### Уровень 1 — Главный заголовок (H1, Hero)
+- Шрифт: Unbounded
+- Размер: **55px** (десктоп), 28px (мобайл)
+- Weight: **600**
+- Line-height: 1.1
+- Letter-spacing: -2px
+- Цвет: #1a1a2e
+
+### Уровень 2 — Заголовок секции (H2, экран спикера и т.д.)
+- Шрифт: Unbounded
+- Размер: **22px** (десктоп), **17px** (мобайл)
+- Weight: **400**
+- Line-height: 1.3
+- Letter-spacing: -1px (десктоп), -0.5px (мобайл)
+- Цвет: #1a1a2e
+
+### Основной текст (Body)
+- Шрифт: Manrope
+- Размер: **18px** (десктоп), **14px** (мобайл)
+- Weight: **400**
+- Line-height: 1.5
+- Цвет: #7a7f8a
+
+---
+
+## Типографика (детальные значения Hero)
 
 ### Надзаголовок (supra-heading)
 - Шрифт: Manrope
@@ -94,10 +121,11 @@
 - Letter-spacing: 3px
 - Uppercase
 
-### Body (будущие экраны)
-- Размер: 16–18px
+### Body (см. «Основной текст» выше)
+- Размер: 18px
 - Weight: 400
-- Line-height: 1.4–1.6
+- Line-height: 1.5
+- Цвет: #7a7f8a
 
 ### Буллиты (hero-bullets)
 - Шрифт: Manrope
@@ -158,15 +186,24 @@
 - Mobile-first подход
 - **Мобильную версию корректировать отдельно** — не масштабировать десктопные значения автоматически
 
-### Мобильная адаптация сканера (breakpoint 560px)
-- Обёртка: width calc(100vw - 40px)
-- Ячейки: width/height auto, aspect-ratio 1, border-radius 12px, gap 8px
+### Мобильная адаптация сканера (breakpoint 768px)
+- **Скрытые ячейки:** левый столбец (`nth-child(5n+1)`) + нижний ряд (`nth-child(n+16)`) → 12 видимых из 20 (сетка 4×3)
+- **Grid:** `grid-template-columns: repeat(4, 1fr)`, `grid-template-rows: repeat(3, 1fr)`
+- Ячейки: aspect-ratio 1, border-radius 12px, gap 8px
 - Иконки: width 80%, height auto
 - Подписи: font-size 8px
 - Позиционирование: cell-icon-dark padding-bottom 10px, cell-white padding-bottom 1px, cell-icon-color margin-bottom 0
 - Сканер-линия: left/right -10px
+- **Touch-зона:** `::before` pseudo-element, top: -6px, bottom: -6px (невидимая зона 12px)
 - Touch-поддержка: touchstart/touchmove/touchend
 - Сокращённые подписи: Юнит-эк., SWOT, Каналы, Портрет
+- **Анимация:** `scanDownMobile`, stop-point 42% (середина 2-го ряда)
+
+### Анимация сканера (общие параметры)
+- **Длительность:** 5s, easing: ease-in-out, задержка: 1.5s, forwards
+- **Десктоп stop-point:** 62.5% (середина 3-го ряда)
+- **Мобайл stop-point:** 42% (середина 2-го ряда)
+- **JS таймер обновления:** 7000ms
 
 ## Анимации — сдержанные, плавные, живые
 

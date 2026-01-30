@@ -1,5 +1,72 @@
 # CHANGELOG — Лог изменений
 
+## 2026-01-30 (v29) — Сканер: мобильная оптимизация + анимация
+
+### Мобильная адаптация сканера (768px):
+- **Скрыты ячейки:** левый столбец (`nth-child(5n+1)`) + нижний ряд (`nth-child(n+16)`) → с 20 до 12 видимых ячеек (сетка 4×3)
+- **Grid:** `grid-template-columns: repeat(4, 1fr)`, `grid-template-rows: repeat(3, 1fr)` — убрано пустое пространство от скрытого ряда
+- **Touch-зона scan-line:** невидимый `::before` pseudo-element, `top: -6px; bottom: -6px` (12px суммарно), визуальная толщина линии без изменений (2px)
+- **Мобильная анимация:** отдельный `@keyframes scanDownMobile` — `0% { top: -4px }` → `100% { top: 42% }` (середина 2-го ряда)
+
+### Анимация сканера (десктоп + общее):
+- **Длительность:** 2.5s → **5s**, easing: `ease-in-out` (было cubic-bezier)
+- **Задержка:** 1s → **1.5s**
+- **Десктоп stop-point:** 50% → **62.5%** (середина 3-го ряда из 4)
+- **Таймер обновления:** setTimeout для clearInterval увеличен с 4000 → **7000ms**
+
+### JS (script.js):
+- **Новая функция `getVisibleMaxY()`:** вычисляет нижнюю границу видимых ячеек (пропускает `display:none`)
+- **`updateCells()`:** пропускает скрытые ячейки (`offsetParent === null`)
+- **mousemove/touchmove:** используют `getVisibleMaxY()` вместо `rect.height` для ограничения drag-зоны
+
+## 2026-01-30 (v28) — Экран 2: мобильная адаптация + финализация
+
+### Мобильная адаптация quote-section:
+- **Брейкпоинт 1100px:** CSS Grid layout — заголовок на всю ширину сверху, фото (100×130px) слева + подтекст справа
+  - `grid-template-areas: "heading heading" / "avatar text"`
+  - `display: contents` на `.quote-right` и `.quote-content` для «вытягивания» дочерних элементов в grid
+  - Фото: 100×130px (в 2 раза меньше десктопа), border-radius 10px
+  - Gap: 16px между фото и текстом
+- **Брейкпоинт 768px:** уменьшены шрифты
+  - quote-heading: 17px, weight 400, letter-spacing -0.5px
+  - quote-text: 14px
+  - padding: 0 20px, section padding: 60px 0
+
+### Изменения десктопа:
+- **quote-heading font-weight:** 500 → **400** (облегчено по решению заказчика)
+- **Текст quote-text:** "Метод Алексея заточенного" → "Метод заточен" (исправлено заказчиком)
+
+### Очистка CSS:
+- Удалены неиспользуемые классы: `.quote-author-info`, `.quote-author-name`, `.quote-author-role`, `.quote-author-social`, `.quote-mark`, `.quote-mark img`, `.quote-text-bold`
+
+### Типографика:
+- **Обновлена иерархия в DESIGN_STANDARDS.md:** H2 weight → 400, добавлены мобильные размеры (H2: 17px, Body: 14px)
+
+## 2026-01-30 (v27) — Экран 2: Блок спикера (quote-section) + типографика
+
+### Экран 2 — блок спикера:
+- **Новая секция** `quote-section` добавлена после Hero в index.html
+- **Фото спикера (quote-avatar):** 200×260px, border-radius 18px, цветное (без grayscale)
+- **Заголовок (quote-heading):** Unbounded 22px/500, color #1a1a2e, letter-spacing -1px
+  - Текст: "Тест разработал Алексей Добрусин — маркетолог с 16-летним опытом, кандидат э.н. Создатель инженерного подхода к маркетингу."
+- **Подтекст (quote-text):** Manrope 18px/400, color #7a7f8a
+  - Текст: "Метод Алексея заточенного под микробизнес, где нет бюджетов и команды. Проверено на 300+ компаниях из 49 ниш. Средний рост выручки после внедрения — 40% за 5 месяцев."
+- **Layout:** flex, gap 80px, align-items flex-start, max-width 1280px
+- **Иконка:** убрана (тестировались кавычки и ракета — отклонены заказчиком)
+- **Фон секции:** #f5f5f7
+
+### Типографика:
+- **Зафиксирована иерархия уровней** в DESIGN_STANDARDS.md:
+  - Уровень 1 (H1): Unbounded, 55px, weight 600
+  - Уровень 2 (H2): Unbounded, 22px, weight 500
+  - Body: Manrope, 18px, weight 400, #7a7f8a
+
+### Неиспользуемый код (оставлен в CSS):
+- `.quote-mark`, `.quote-author-info`, `.quote-author-name`, `.quote-author-role`, `.quote-author-social`
+
+### Скачанные, но неиспользуемые иконки:
+- `assets/icons/rocket.svg`, `assets/icons/quote.svg`, `assets/icons/x-twitter.svg`
+
 ## 2026-01-30 (v26) — Сканер перенесён на главную страницу + адаптация Hero
 
 ### Перенос сканера на index.html:
