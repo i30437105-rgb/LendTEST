@@ -1,5 +1,82 @@
 # CHANGELOG — Лог изменений
 
+## 2026-01-31 (v31) — Экспериментальная страница quote-test: видео-карточка
+
+### Создана экспериментальная страница:
+- **quote-test.html** — изолированная страница для тестирования вариантов блока спикера
+- **quote-test.css** — переопределения стилей для экспериментов
+- Цель: тестировать варианты quote-section без изменения основного сайта (index.html)
+
+### Салатовая видео-карточка (quote-card):
+- **Размеры:** 720×405px (16:9 aspect ratio для встраивания видео-плеера)
+- **Фон:** #c8f542 (лаймовый)
+- **Border-radius:** 16px (карточка), 12px (фото) — стандарты Типа 1
+- **Padding:** 12px (стандарт Типа 1)
+- **Gap внутри:** 12px между фото и правой частью
+
+### Структура карточки:
+- **Левая часть (quote-card-photo):** 280px фиксированная ширина
+  - Фото: assets/images/AD_1.jpg, grayscale(1), object-fit: cover
+  - Border-radius: 12px
+- **Правая часть (quote-card-content):** flex: 1, justify-content: flex-end
+  - Padding: 12px 12px 12px 36px (слева увеличен в 3 раза для отступа текста от иконки)
+- **Иконка (quote-card-icon):** белый круг с иконкой zap
+  - Position: absolute, вертикально по центру карточки (top: 50%), горизонтально left: 506px
+  - Круг: 100×100px, border-radius: 50%, background: #ffffff
+  - Shadow: 0 10px 40px rgba(0,0,0,0.15)
+  - Иконка: 40×40px, filter: brightness(0) (чёрная)
+- **Текст (quote-card-caption):** "Посмотрите видео-инструкцию"
+  - Unbounded 20px/600, color: #1a1a2e, text-align: left
+  - Позиция: внизу справа (justify-content: flex-end)
+
+### Правая часть (quote-right):
+- **Gap от карточки:** 60px
+- Содержимое: заголовок (H2) + подтекст (Body) — без изменений относительно основной страницы
+
+### Статус:
+- Экспериментальная страница готова для демонстрации заказчику
+- Основная страница index.html НЕ затронута
+- При утверждении варианта — перенести стили в styles.css
+
+## 2026-01-30 (v30) — Экран 3: секция бонусов (steps-section) + исправление межсекционных отступов
+
+### Экран 3 — секция «Пройдите тест и заберите 3 бонуса» (steps-section):
+- **Новая секция** добавлена после quote-section в index.html
+- **Заголовок секции (steps-header):** flex, 2 колонки — слева H2, справа CTA-кнопка «Забрать бонусы»
+- **H2 (steps-title):** Unbounded 55px/600, текст: «Пройдите тест и заберите 3 бонуса» — слово «бонуса» с лаймовой подложкой (highlight-lime)
+- **Stacking context:** `.steps-title { position: relative; z-index: 0 }` — для корректной работы `highlight-lime::before` с `z-index: -1` вне Hero
+- **CTA-кнопка:** btn-primary с иконкой layers.svg, текст «Забрать бонусы»
+- **3 карточки (steps-grid):** grid 3 колонки, gap 48px
+  - Каждая карточка: dashed border #d1d5db, border-radius 16px, фон #fafafa
+  - Заголовок карточки: «// Бонус 01/02/03» + номер + прогресс-точки (лаймовые)
+  - Текст карточки: Manrope 16px/400, #7a7f8a
+  - Изображение внизу: placeholder (серый/тёмный/лаймовый)
+- **Тексты карточек (из COPY.md):**
+  1. Схема в Miro «Система маркетинга на 120 млн ₽»
+  2. Голосовые рекомендации от Алексея по результатам теста
+  3. Видеоурок «Основы инженерного маркетинга»
+
+### Мобильная адаптация steps-section:
+- **1100px:** flex → column, заголовок и кнопка по центру, grid 2 колонки, gap 24px
+  - steps-title: 36px, letter-spacing -1.5px
+  - steps-header-right: `flex: none; align-self: auto; width: auto;` — исправление растяжки
+- **768px:** grid 1 колонка, gap 20px
+  - steps-title: 28px, letter-spacing -1px
+  - step-card-text: 14px
+  - step-card-image: min-height 200px
+  - steps-section padding: 0 0 60px, steps-container padding: 0 20px
+
+### Исправление межсекционных отступов (КРИТИЧНО):
+- **Проблема:** расстояние Hero→Quote ≠ Quote→Steps (визуально и по CSS)
+- **Причина десктоп:** Hero имел `min-height: calc(100vh - 60px)` с flex-центрированием → непредсказуемый нижний отступ. Steps имел `padding: 100px 0 120px` → двойной стык с quote (100+100=200px)
+- **Причина мобайл:** аналогично — `min-height` создавал переменный отступ; `quote-text` имел лишний `margin-bottom: 16px`
+- **Исправления:**
+  - Hero десктоп: `min-height` убран → `padding: 100px 144px 0` (фиксированный)
+  - Hero мобайл (768px): `min-height: auto; align-items: flex-start; padding: 0 20px; padding-top: 30px`
+  - Steps: `padding: 0 0 120px` (десктоп), `padding: 0 0 60px` (мобайл) — top = 0
+  - quote-text: `margin-bottom: 0` (убран лишний отступ последнего элемента секции)
+- **Результат:** десктоп 100px между всеми секциями, мобайл 60px между всеми секциями
+
 ## 2026-01-30 (v29) — Сканер: мобильная оптимизация + анимация
 
 ### Мобильная адаптация сканера (768px):
