@@ -120,6 +120,25 @@
             cursor: grabbing;
         }
 
+        .cell.sick-active .cell-white {
+            background: #ec5353;
+        }
+
+        .cell.sick-active .cell-label {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .cell.sick-active {
+            animation: sickPulse 1.2s ease-in-out infinite;
+            box-shadow: 0 0 6px rgba(236, 83, 83, 0.15);
+        }
+
+        @keyframes sickPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
         @keyframes scanDown {
             0% {
                 top: -4px;
@@ -137,20 +156,20 @@
             <!-- Ряд 1: Рынок, Стратегия, Маркетолог, Конкуренты, Юнит-экономика -->
             <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/market.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/market.png" alt=""><span class="cell-label">Рынок</span></div></div>
             <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/strategy.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/strategy.png" alt=""><span class="cell-label">Стратегия</span></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/marketer.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/marketer.png" alt=""><span class="cell-label">Маркетолог</span></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/binoculars.svg" alt=""></div><div class="cell-white"><span class="cell-label">Конкуренты</span></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/coins.svg" alt=""></div><div class="cell-white"><span class="cell-label">Юнит-экономика</span></div></div>
+            <div class="cell" data-sick><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/marketer.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/marketer.png" alt=""><span class="cell-label">Маркетолог</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/competitors.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/competitors.png" alt=""><span class="cell-label">Конкуренты</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/unit-economics.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/unit-economics.png" alt=""><span class="cell-label">Юнит-экономика</span></div></div>
             <!-- Ряд 2: SWOT, Воронка, JTBD, 4P, Портрет ЦА -->
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">SWOT-анализ</span></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">Воронка</span></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">JTBD</span></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">4P</span></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">Портрет ЦА</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/swot.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/swot.png" alt=""><span class="cell-label">SWOT-анализ</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/funnel.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/funnel.png" alt=""><span class="cell-label">Воронка</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/jtbd.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/jtbd.png" alt=""><span class="cell-label">JTBD</span></div></div>
+            <div class="cell" data-sick><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/4p.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/4p.png" alt=""><span class="cell-label">4P</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/target-audience.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/target-audience.png" alt=""><span class="cell-label">Портрет ЦА</span></div></div>
             <!-- Ряд 3: Каналы рекламы, CJM, HADI, ABCDX, Cross-sale -->
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">Каналы рекламы</span></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">CJM</span></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">HADI</span></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">ABCDX</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/ad-channels.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/ad-channels.png" alt=""><span class="cell-label">Каналы рекламы</span></div></div>
+            <div class="cell" data-sick><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/cjm.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/cjm.png" alt=""><span class="cell-label">CJM</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/hadi.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/hadi.png" alt=""><span class="cell-label">HADI</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/abcdx.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/abcdx.png" alt=""><span class="cell-label">ABCDX</span></div></div>
             <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">Cross-sale</span></div></div>
             <!-- Ряд 4: Продукт, Интервью, РОП, CVP, Подрядчик -->
             <div class="cell"><div class="cell-bg"></div><div class="cell-white"><span class="cell-label">Продукт</span></div></div>
@@ -185,6 +204,15 @@
                 } else {
                     const pct = ((lineY - cellTop) / cellHeight) * 100;
                     whiteLayer.style.clipPath = `inset(0 0 ${100 - pct}% 0)`;
+                }
+
+                // Sick cells: activate when scanner passes below cell bottom
+                if (cell.hasAttribute('data-sick')) {
+                    if (lineY >= cellBottom) {
+                        cell.classList.add('sick-active');
+                    } else {
+                        cell.classList.remove('sick-active');
+                    }
                 }
             });
         }
