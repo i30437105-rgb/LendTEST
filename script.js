@@ -87,3 +87,98 @@
         observer.observe(el);
     });
 })();
+
+/* ============================================
+   Scanner — drag & reveal logic
+   ============================================ */
+(function() {
+    var scanLine = document.querySelector('.scan-line');
+    var grid = document.querySelector('.scanner-wrap .grid');
+    if (!scanLine || !grid) return;
+
+    var cells = grid.querySelectorAll('.cell');
+    var isDragging = false;
+
+    function updateCells() {
+        var lineRect = scanLine.getBoundingClientRect();
+        var lineY = lineRect.top + lineRect.height / 2;
+
+        cells.forEach(function(cell) {
+            var cellRect = cell.getBoundingClientRect();
+            var whiteLayer = cell.querySelector('.cell-white');
+            var cellTop = cellRect.top;
+            var cellBottom = cellRect.bottom;
+            var cellHeight = cellRect.height;
+
+            if (lineY <= cellTop) {
+                whiteLayer.style.clipPath = 'inset(0 0 100% 0)';
+            } else if (lineY >= cellBottom) {
+                whiteLayer.style.clipPath = 'inset(0 0 0 0)';
+            } else {
+                var pct = ((lineY - cellTop) / cellHeight) * 100;
+                whiteLayer.style.clipPath = 'inset(0 0 ' + (100 - pct) + '% 0)';
+            }
+
+            if (cell.hasAttribute('data-sick')) {
+                if (lineY >= cellBottom) {
+                    cell.classList.add('sick-active');
+                } else {
+                    cell.classList.remove('sick-active');
+                }
+            }
+        });
+    }
+
+    var animObserver = setInterval(function() { updateCells(); }, 30);
+    setTimeout(function() { clearInterval(animObserver); }, 4000);
+
+    scanLine.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        var currentTop = scanLine.getBoundingClientRect().top - grid.getBoundingClientRect().top;
+        scanLine.style.animation = 'none';
+        scanLine.style.top = currentTop + 'px';
+        isDragging = true;
+        scanLine.classList.add('dragging');
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        var rect = grid.getBoundingClientRect();
+        var y = e.clientY - rect.top;
+        y = Math.max(0, Math.min(y, rect.height));
+        scanLine.style.top = y + 'px';
+        updateCells();
+    });
+
+    document.addEventListener('mouseup', function() {
+        if (!isDragging) return;
+        isDragging = false;
+        scanLine.classList.remove('dragging');
+    });
+
+    scanLine.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        var currentTop = scanLine.getBoundingClientRect().top - grid.getBoundingClientRect().top;
+        scanLine.style.animation = 'none';
+        scanLine.style.top = currentTop + 'px';
+        isDragging = true;
+        scanLine.classList.add('dragging');
+    }, { passive: false });
+
+    document.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        var touch = e.touches[0];
+        var rect = grid.getBoundingClientRect();
+        var y = touch.clientY - rect.top;
+        y = Math.max(0, Math.min(y, rect.height));
+        scanLine.style.top = y + 'px';
+        updateCells();
+    }, { passive: false });
+
+    document.addEventListener('touchend', function() {
+        if (!isDragging) return;
+        isDragging = false;
+        scanLine.classList.remove('dragging');
+    });
+})();

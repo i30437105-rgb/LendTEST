@@ -18,14 +18,14 @@
 2. `docs/DESIGN_STANDARDS.md` — единый источник правды по стилям
 3. `docs/WORKFLOW.md` — процесс работы, текущий статус
 4. `docs/COPY.md` — утверждённые тексты
-5. `docs/CHANGELOG.md` — полная история изменений (v1–v25)
+5. `docs/CHANGELOG.md` — полная история изменений (v1–v26)
 6. `docs/ERRORS.md` — паттерны ошибок (не допускать повторно)
 
-## Текущее состояние проекта (v25)
+## Текущее состояние проекта (v26)
 
-### Экран 1: Hero — десктоп готов, мобилка базово исправлена
+### Экран 1: Hero + Сканер — ИНТЕГРИРОВАНО на одной странице
 
-Десктопная версия Hero полностью свёрстана и утверждена по содержанию. Все русские тексты подставлены. Шрифты для кириллицы подобраны и утверждены заказчиком.
+Hero полностью свёрстан, сканер перенесён в правую часть. Десктоп и мобилка готовы. Все русские тексты подставлены. Шрифты для кириллицы утверждены заказчиком.
 
 ### Что конкретно сейчас на экране (десктоп):
 
@@ -46,22 +46,35 @@
   - Manrope 15px/400, цвет #7a7f8a
 - CTA-кнопка: иконка zap (молния, заливка) + "Пройти краш-тест" — Manrope 17px/600, чёрный фон #1a1a2e, hover → лаймовый #c8f542 + scale(1.04) + glow
 
-**Правая часть (hero-right, flex: 0 1 580px):**
-- Карточка палитры (hero-card) — белая, border-radius 18px, rotate(2deg), tilt-эффект на мышку (JS)
-  - Внутри: 3 цветные колонки (#F5B731, #F07040, #B8264A)
-  - Grid-карточка сверху справа (3×4 ячейки)
-- Floating shape — оливково-серый (#a8b5a0) прямоугольник, анимация "дыхания"
-- Лейбл "START SCANNER" — стрелка arrow-up-right (56px) + текст Chakra Petch 19px/400, letter-spacing 3px, uppercase, hover-анимация с пульсацией стрелки
+**Правая часть (hero-right, flex: 0 1 580px) — СКАНЕР:**
+- Сетка 5×4 = 20 ячеек (96×96px, gap 12px, border-radius 18px)
+- Каждая ячейка: два слоя — cell-bg (#1a1a2e тёмный) + cell-white (#ffffff, clip-path)
+- Сканер-линия: лаймовая (#c8f542) с glow-свечением, анимация до 50% (2.5s, задержка 1s)
+- Drag мышкой/touch без прыжка, попиксельное обеление clip-path
+- Двухслойная система иконок (20 PNG, 70×70px)
+- Красная индикация «больных» ячеек: Маркетолог, 4P, CJM (#ec5353, пульсация)
+- Hover: scale(1.03) + box-shadow
+
+**Навбар:**
+- position: relative (в потоке документа, уходит при скролле)
+- background: transparent
+- Логотип: crosshair + "MetodZMS" (ClashDisplay 19px/600)
+
+### Мобильная адаптация (768px):
+- Hero gap: 30px, padding-top: 30px
+- CTA-кнопка: лаймовый фон #c8f542, тёмный текст, width: auto, padding: 18px 33px, min-height: 65px
+- Буллиты: 13px
+- Ячейки сканера: aspect-ratio 1, gap 8px, border-radius 12px, иконки 80%, подписи 8px
+- Touch-поддержка сканера (touchstart/touchmove/touchend)
+- Сокращённые подписи: Юнит-эк., SWOT, Каналы, Портрет
 
 ### Файлы проекта:
-- `index.html` — Hero-экран (102 строки)
-- `scanner.html` — блок «Сканер инструментов» (отдельная страница, 220 строк)
-- `styles.css` — все стили Hero (590 строк), включая responsive (1100px и 768px breakpoints)
-- `script.js` — tilt-эффект карточки + счётчик цифры (89 строк)
-- `assets/icons/` — SVG из Lucide: arrow-up-right, crosshair, zap, clock, clipboard-list, layers, settings, circle-plus, chevron-down, rocket, circle-help
-- `assets/icons/scanner/` — иконки сканера:
-  - **Цветные PNG от заказчика:** market.png, strategy.png, marketer.png (первые 3 ячейки)
-  - **Lucide SVG:** binoculars.svg, coins.svg (ячейки 4–5, только тёмный слой)
+- `index.html` — Hero + сканер (89 строк)
+- `scanner.html` — автономная копия сканера (320 строк, для тестирования)
+- `styles.css` — все стили Hero + сканер + responsive (~750 строк)
+- `script.js` — tilt-эффект (неактивен, hero-card убрана) + счётчик + сканер drag/reveal (~184 строки)
+- `assets/icons/` — SVG из Lucide: crosshair, zap, clock, clipboard-list и др.
+- `assets/icons/scanner/` — 20 цветных PNG-иконок: market, strategy, marketer, competitors, unit-economics, swot, funnel, jtbd, 4p, target-audience, ad-channels, cjm, hadi, abcdx, cross-sale, product, interview, rop, cvp, contractor
 - `assets/fonts/ClashDisplay-Variable.ttf` — локальный шрифт (только для логотипа)
 
 ### Google Fonts подключены:
@@ -96,72 +109,43 @@
 - 1100px — колонки → стэк, центрирование
 - 768px — мобильные размеры шрифтов, кнопка на всю ширину, буллиты вертикально
 
-### Блок «Сканер инструментов» (v25) — ГОТОВ, отдельная страница scanner.html
+### Детали сканера (интегрирован в hero-right)
 
 Интерактивный блок-сканер 20 маркетинговых инструментов. Метафора: рентген-сканер проходит по сетке, обеляя квадраты — диагностика маркетинга.
 
-**Файл:** `scanner.html` (полностью автономный, НЕ затрагивает index.html/styles.css/script.js)
-
-**Что на экране:**
-- Сетка 5×4 = 20 ячеек (96×96px, gap 12px, border-radius 18px)
-- Каждая ячейка: два слоя — `cell-bg` (#1a1a2e тёмный) + `cell-white` (#ffffff, clip-path контролируемый)
-- Сканер-линия: лаймовая (#c8f542) с glow-свечением (3 уровня box-shadow)
-  - При загрузке: задержка 1 сек → спуск до 50% за 2.5 сек
-  - Перетаскивается мышкой вверх-вниз в пределах сетки
-  - При клике НЕ прыгает (фиксация текущей позиции через getBoundingClientRect перед отключением animation)
-- Обеление: попиксельное через clip-path — белый слой раскрывается ровно до линии сканера
-- Hover: scale(1.03) + box-shadow 0 4px 16px rgba(26,26,46,0.15)
+**Расположение:** hero-right в index.html. Стили в styles.css, логика в script.js.
+**Резервная копия:** `scanner.html` (автономная версия для тестирования, НЕ используется на сайте)
 
 **Двухслойная система иконок:**
-- **Тёмный слой** (`cell-icon-dark`, z-index 1): иконка отображается на тёмном фоне, `filter: grayscale(1) brightness(1.8)`, `opacity: 0.6`. Располагается flex-end с padding-bottom 20px.
-- **Цветной слой** (`cell-icon-color` внутри `cell-white`, z-index 3): цветная иконка, раскрывается clip-path при проходе сканера. Располагается flex-end с margin-bottom 4px. Под иконкой — подпись (`cell-label`).
+- **Тёмный слой** (`cell-icon-dark`, z-index 1): `filter: grayscale(1) brightness(1.8)`, `opacity: 0.6`, flex-end с padding-bottom 20px
+- **Цветной слой** (`cell-icon-color` внутри `cell-white`, z-index 3): раскрывается clip-path при проходе сканера, flex-end с margin-bottom 4px. Под иконкой — подпись (`cell-label`)
 - **Размер иконок:** 70×70px
-- **Подписи:** Manrope 10px/500, color #1a1a2e, видны только на белом фоне
+- **Подписи:** Manrope 10px/500, color #1a1a2e
 
-**Красная индикация «больных» ячеек (v23):**
-- Атрибут `data-sick` на элементе `.cell` — маркер «больной» ячейки
-- При прохождении сканера ниже ячейки → класс `sick-active`
-- Фон: #ec5353 (насыщенный красный), подпись белая (#ffffff, weight 600)
-- Пульсация: scale(1.05), 1.2s, ease-in-out, бесконечная
-- Свечение: box-shadow 0 0 6px rgba(236,83,83,0.15)
-- При подъёме сканера — красный снимается
+**Красная индикация «больных» ячеек:**
+- Атрибут `data-sick` → класс `sick-active` при прохождении сканера
+- Фон: #ec5353, подпись белая (#ffffff, weight 600), пульсация scale(1.05)
 - **Текущие «больные» ячейки:** Маркетолог, 4P, CJM
 
-**Мобильная адаптация (v24):**
-- Breakpoint: 560px
-- Ячейки: aspect-ratio 1, gap 8px, border-radius 12px, ширина обёртки calc(100vw - 40px)
-- Иконки: width 80%, height auto
-- Подписи: 8px
-- Позиционирование: cell-icon-dark padding-bottom 10px, cell-white padding-bottom 1px, cell-icon-color margin-bottom 0
-- Сканер-линия: left/right -10px
-- Touch-поддержка: touchstart/touchmove/touchend для перетаскивания
-- Сокращённые подписи: Юнит-эк., SWOT, Каналы, Портрет
-
-**Все 20 иконок интегрированы (v25):**
-- market, strategy, marketer, competitors, unit-economics, swot, funnel, jtbd, 4p, target-audience, ad-channels, cjm, hadi, abcdx, cross-sale, product, interview, rop, cvp, contractor
-
-**20 инструментов (полный список):**
+**20 инструментов:**
 1. Рынок 2. Стратегия 3. Маркетолог 4. Конкуренты 5. Юнит-экономика
 6. SWOT-анализ 7. Воронка 8. JTBD 9. 4P 10. Портрет ЦА
 11. Каналы рекламы 12. CJM 13. HADI 14. ABCDX 15. Cross-sale
 16. Продукт 17. Интервью 18. РОП 19. CVP 20. Подрядчик
 
-**Как добавить новую цветную иконку (шаблон):**
+**Как добавить новую иконку:**
 1. Сохранить PNG в `/assets/icons/scanner/`
-2. В HTML ячейки добавить тёмный слой: `<div class="cell-icon-dark"><img src="assets/icons/scanner/NAME.png" alt=""></div>`
-3. В `cell-white` добавить цветную иконку перед `<span class="cell-label">`: `<img class="cell-icon-color" src="assets/icons/scanner/NAME.png" alt="">`
-4. Пример готовой ячейки (см. первые 14 ячеек в scanner.html)
+2. В HTML: тёмный слой `<div class="cell-icon-dark"><img src="assets/icons/scanner/NAME.png" alt=""></div>`
+3. В `cell-white`: `<img class="cell-icon-color" src="assets/icons/scanner/NAME.png" alt="">` перед `<span class="cell-label">`
 
 **Как пометить ячейку как «больную»:**
-- Добавить атрибут `data-sick` на элемент `.cell`: `<div class="cell" data-sick>`
+- Добавить `data-sick` на `.cell`: `<div class="cell" data-sick>`
 
 ### Что может понадобиться дальше:
-- **Перенос готового сканера на основную страницу (index.html)** — блок полностью готов
 - Зелёная индикация «здоровых» инструментов (если потребуется)
 - Визуальная проверка и доработка мобильной адаптации (375px, 390px, 414px)
 - Дальнейшие стилистические правки Hero по указанию заказчика
 - Утверждение Hero → переход к экрану 2 (референс от заказчика)
-- Правая часть Hero может быть переделана (сейчас от референса palleteai.com)
 
 ## Железные правила (краткая версия)
 

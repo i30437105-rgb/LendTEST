@@ -1,5 +1,27 @@
 # CHANGELOG — Лог изменений
 
+## 2026-01-30 (v26) — Сканер перенесён на главную страницу + адаптация Hero
+
+### Перенос сканера на index.html:
+- Блок сканера (HTML/CSS/JS) полностью перенесён из scanner.html в hero-right секцию index.html
+- CSS сканера добавлен в styles.css (секция SCANNER)
+- JS сканера (drag & reveal, sick-индикация, touch-поддержка) добавлен в script.js
+- Удалены из hero-right: карточка палитры (palette-columns), grid-карточка, floating-shape, лейбл START SCANNER
+
+### Изменения Hero:
+- **Навбар:** `position: fixed` → `position: relative`, background вернулся на transparent — навбар теперь в потоке документа, уходит при скролле
+- **Hero min-height:** `100vh` → `calc(100vh - 60px)` — компенсация навбара в потоке
+- **Кнопка CTA (десктоп):** без изменений — тёмный фон #1a1a2e, hover лаймовый #c8f542
+
+### Мобильная адаптация (768px):
+- **Кнопка CTA:** инвертирована — лаймовый фон #c8f542, тёмный текст; width: auto; padding: 18px 33px; min-height: 65px
+- **Иконка кнопки:** filter: brightness(0) на мобилке (тёмная иконка на лаймовом фоне)
+- **Hero gap:** 60px → 30px (сканер ближе к кнопке)
+- **Hero padding-top:** 30px (вместо 80px от fixed навбара)
+- **Буллиты:** font-size 13px (было 15px)
+- **hero-right:** min-height: auto (убрано 360px), display: flex + justify-content: center
+- **Сканер на мобилке:** ячейки aspect-ratio: 1, gap 8px, border-radius 12px, иконки 80%, подписи 8px, scan-line left/right -10px
+
 ## 2026-01-30 (v25) — Сканер: все 20 иконок интегрированы, блок готов к переносу
 - **Иконки:** добавлены последние 6 цветных PNG-иконок (двухслойная система): cross-sale, product, interview, rop, cvp, contractor
 - **Итого:** 20 из 20 иконок интегрированы — сканер полностью укомплектован
