@@ -147,26 +147,72 @@
                 top: 50%;
             }
         }
+
+        /* Мобильная адаптация */
+        @media (max-width: 560px) {
+            .scanner-wrap {
+                width: calc(100vw - 40px);
+            }
+
+            .grid {
+                gap: 8px;
+            }
+
+            .cell {
+                width: auto;
+                height: auto;
+                aspect-ratio: 1;
+                border-radius: 12px;
+            }
+
+            .cell-white .cell-icon-color {
+                width: 80%;
+                height: auto;
+                margin-bottom: 0px;
+            }
+
+            .cell-icon-dark img {
+                width: 80%;
+                height: auto;
+            }
+
+            .cell-label {
+                font-size: 8px;
+            }
+
+            .cell-icon-dark {
+                padding-bottom: 10px;
+            }
+
+            .cell-white {
+                padding-bottom: 1px;
+            }
+
+            .scan-line {
+                left: -10px;
+                right: -10px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="scanner-wrap">
         <div class="scan-line"></div>
         <div class="grid">
-            <!-- Ряд 1: Рынок, Стратегия, Маркетолог, Конкуренты, Юнит-экономика -->
+            <!-- Ряд 1: Рынок, Стратегия, Маркетолог, Конкуренты, Юнит-эк. -->
             <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/market.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/market.png" alt=""><span class="cell-label">Рынок</span></div></div>
             <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/strategy.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/strategy.png" alt=""><span class="cell-label">Стратегия</span></div></div>
             <div class="cell" data-sick><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/marketer.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/marketer.png" alt=""><span class="cell-label">Маркетолог</span></div></div>
             <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/competitors.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/competitors.png" alt=""><span class="cell-label">Конкуренты</span></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/unit-economics.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/unit-economics.png" alt=""><span class="cell-label">Юнит-экономика</span></div></div>
-            <!-- Ряд 2: SWOT, Воронка, JTBD, 4P, Портрет ЦА -->
-            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/swot.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/swot.png" alt=""><span class="cell-label">SWOT-анализ</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/unit-economics.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/unit-economics.png" alt=""><span class="cell-label">Юнит-эк.</span></div></div>
+            <!-- Ряд 2: SWOT, Воронка, JTBD, 4P, Портрет -->
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/swot.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/swot.png" alt=""><span class="cell-label">SWOT</span></div></div>
             <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/funnel.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/funnel.png" alt=""><span class="cell-label">Воронка</span></div></div>
             <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/jtbd.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/jtbd.png" alt=""><span class="cell-label">JTBD</span></div></div>
             <div class="cell" data-sick><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/4p.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/4p.png" alt=""><span class="cell-label">4P</span></div></div>
-            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/target-audience.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/target-audience.png" alt=""><span class="cell-label">Портрет ЦА</span></div></div>
-            <!-- Ряд 3: Каналы рекламы, CJM, HADI, ABCDX, Cross-sale -->
-            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/ad-channels.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/ad-channels.png" alt=""><span class="cell-label">Каналы рекламы</span></div></div>
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/target-audience.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/target-audience.png" alt=""><span class="cell-label">Портрет</span></div></div>
+            <!-- Ряд 3: Каналы, CJM, HADI, ABCDX, Cross-sale -->
+            <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/ad-channels.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/ad-channels.png" alt=""><span class="cell-label">Каналы</span></div></div>
             <div class="cell" data-sick><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/cjm.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/cjm.png" alt=""><span class="cell-label">CJM</span></div></div>
             <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/hadi.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/hadi.png" alt=""><span class="cell-label">HADI</span></div></div>
             <div class="cell"><div class="cell-bg"></div><div class="cell-icon-dark"><img src="assets/icons/scanner/abcdx.png" alt=""></div><div class="cell-white"><img class="cell-icon-color" src="assets/icons/scanner/abcdx.png" alt=""><span class="cell-label">ABCDX</span></div></div>
@@ -239,6 +285,33 @@
         });
 
         document.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            scanLine.classList.remove('dragging');
+        });
+
+        // Touch support
+        scanLine.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const currentTop = scanLine.getBoundingClientRect().top - grid.getBoundingClientRect().top;
+            scanLine.style.animation = 'none';
+            scanLine.style.top = currentTop + 'px';
+            isDragging = true;
+            scanLine.classList.add('dragging');
+        }, { passive: false });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = grid.getBoundingClientRect();
+            let y = touch.clientY - rect.top;
+            y = Math.max(0, Math.min(y, rect.height));
+            scanLine.style.top = y + 'px';
+            updateCells();
+        }, { passive: false });
+
+        document.addEventListener('touchend', () => {
             if (!isDragging) return;
             isDragging = false;
             scanLine.classList.remove('dragging');

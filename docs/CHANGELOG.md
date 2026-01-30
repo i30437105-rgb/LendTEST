@@ -1,5 +1,16 @@
 # CHANGELOG — Лог изменений
 
+## 2026-01-30 (v24) — Сканер: мобильная адаптация + touch-поддержка
+- **Мобильная адаптация** (breakpoint 560px):
+  - Сетка: адаптивные ячейки (aspect-ratio: 1), gap 8px, border-radius 12px
+  - Ширина обёртки: calc(100vw - 40px)
+  - Иконки: width 80%, height auto
+  - Подписи: font-size 8px
+  - Позиционирование иконок: cell-icon-dark padding-bottom 10px, cell-white padding-bottom 1px, cell-icon-color margin-bottom 0
+  - Сканер-линия: left/right -10px
+- **Touch-поддержка:** touchstart/touchmove/touchend для перетаскивания сканер-линии на мобильных
+- **Сокращённые подписи:** Юнит-экономика → Юнит-эк., SWOT-анализ → SWOT, Каналы рекламы → Каналы, Портрет ЦА → Портрет
+
 ## 2026-01-30 (v23) — Сканер: 14 цветных иконок + красная индикация «больных» ячеек
 - **Иконки:** интегрированы 14 из 20 цветных PNG-иконок (двухслойная система: тёмный + цветной слой)
   - Новые: competitors, unit-economics, swot, funnel, jtbd, 4p, target-audience, ad-channels, cjm, hadi, abcdx

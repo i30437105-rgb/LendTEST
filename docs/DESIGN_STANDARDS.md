@@ -158,6 +158,16 @@
 - Mobile-first подход
 - **Мобильную версию корректировать отдельно** — не масштабировать десктопные значения автоматически
 
+### Мобильная адаптация сканера (breakpoint 560px)
+- Обёртка: width calc(100vw - 40px)
+- Ячейки: width/height auto, aspect-ratio 1, border-radius 12px, gap 8px
+- Иконки: width 80%, height auto
+- Подписи: font-size 8px
+- Позиционирование: cell-icon-dark padding-bottom 10px, cell-white padding-bottom 1px, cell-icon-color margin-bottom 0
+- Сканер-линия: left/right -10px
+- Touch-поддержка: touchstart/touchmove/touchend
+- Сокращённые подписи: Юнит-эк., SWOT, Каналы, Портрет
+
 ## Анимации — сдержанные, плавные, живые
 
 > Референсы: templifica.com, smoothui.dev
