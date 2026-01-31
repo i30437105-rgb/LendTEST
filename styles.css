@@ -906,8 +906,15 @@ a {
     border-radius: 12px;
     overflow: hidden;
     margin: 0;
-    flex: 1;
-    min-height: 280px;
+    flex: none;
+    height: 196px;
+}
+
+.step-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .step-card-image-placeholder {
@@ -1389,7 +1396,11 @@ a {
     }
 
     .step-card-image {
-        min-height: 200px;
+        height: 140px;
+    }
+
+    .step-card-image img {
+        object-position: top;
     }
 
     .quote-section {
