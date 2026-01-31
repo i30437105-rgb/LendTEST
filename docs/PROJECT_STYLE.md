@@ -192,10 +192,10 @@ font-size: 16px;
 
 ```css
 /* Десктоп */
---spacing-section: 100px;      /* между секциями */
+--spacing-section: 150px;      /* между секциями */
 
 /* Мобайл (768px) */
---spacing-section-mobile: 60px;
+--spacing-section-mobile: 80px;
 ```
 
 #### Правило межсекционных отступов
@@ -208,12 +208,12 @@ padding: 100px 144px 0;        /* десктоп */
 padding: 30px 20px 0;          /* мобайл */
 
 /* Quote */
-padding: 100px 0;              /* десктоп: gap сверху и снизу */
-padding: 60px 0;               /* мобайл */
+padding: 150px 0;              /* десктоп: gap сверху и снизу */
+padding: 80px 0;               /* мобайл */
 
 /* Steps */
 padding: 0 0 120px;            /* десктоп: top = 0 */
-padding: 0 0 60px;             /* мобайл */
+padding: 0 0 80px;             /* мобайл */
 ```
 
 ### Внутренние отступы
