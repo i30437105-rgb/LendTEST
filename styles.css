@@ -1728,6 +1728,7 @@ a {
     .showcase-card {
         padding: 28px;
     }
+
 }
 
 @media (max-width: 768px) {
@@ -2166,6 +2167,228 @@ a {
 
     .sc4-total-value {
         font-size: 20px;
+    }
+}
+
+/* ============================================
+   SECTION 7: CAREER (photo + text)
+   ============================================ */
+.career-section {
+    padding: 0 0 150px;
+    background: #f5f5f7;
+}
+
+.career-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.career-image {
+    flex: 1;
+    min-width: 0;
+}
+
+.career-image {
+    position: relative;
+}
+
+.career-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 18px;
+    object-fit: cover;
+    filter: brightness(0.90) contrast(1.2) saturate(0.8);
+}
+
+.career-overlay {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.career-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #c8f542;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.career-dot::before,
+.career-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #c8f542;
+    opacity: 0;
+    animation: pulse-wave 2.5s ease-out infinite;
+}
+
+.career-dot::after {
+    animation-delay: 1.25s;
+}
+
+.career-overlay-label {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.career-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.career-label {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #7a7f8a;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 24px;
+}
+
+.career-heading {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 55px;
+    font-weight: 600;
+    color: #1a1a2e;
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 60px;
+    line-height: 1.15;
+    letter-spacing: -2px;
+    margin-bottom: 40px;
+    white-space: nowrap;
+    position: relative;
+    z-index: 0;
+}
+
+.career-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+}
+
+.career-checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 3px 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #1a1a2e;
+    line-height: 1.4;
+}
+
+.career-check-icon {
+    flex-shrink: 0;
+    filter: brightness(0) saturate(100%) invert(83%) sepia(47%) saturate(524%) hue-rotate(33deg) brightness(103%) contrast(93%);
+}
+
+.career-text {
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #7a7f8a;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.career-text:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Section 7: Career — Tablet */
+@media (max-width: 1100px) {
+    .career-container {
+        gap: 48px;
+    }
+
+    .career-heading {
+        font-size: 32px;
+        white-space: normal;
+    }
+}
+
+/* Section 7: Career — Mobile */
+@media (max-width: 768px) {
+    .career-section {
+        padding: 0 0 80px;
+    }
+
+    .career-heading {
+        padding: 0 20px;
+        font-size: 28px;
+        letter-spacing: -1px;
+        white-space: normal;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+
+    .career-container {
+        flex-direction: column;
+        padding: 0 20px;
+        gap: 32px;
+    }
+
+    .career-image img {
+        border-radius: 12px;
+    }
+
+    .career-overlay {
+        top: 20px;
+        right: 20px;
+        left: auto;
+        gap: 10px;
+    }
+
+    .career-dot {
+        width: 9px;
+        height: 9px;
+    }
+
+    .career-overlay-label {
+        font-size: 12px;
+    }
+
+    .career-checklist-item {
+        font-size: 13px;
+        padding: 2px 0;
+        gap: 8px;
+    }
+
+    .career-check-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .career-text {
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+
+    .career-text:last-of-type {
+        margin-bottom: 0;
     }
 }
 
