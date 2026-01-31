@@ -1273,10 +1273,16 @@ a {
         margin-bottom: 0;
     }
 
+    .quote-text {
+        order: 2;
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
     .quote-left {
         flex: none;
         width: 100%;
-        order: 2;
+        order: 3;
     }
 
     .quote-card-banner {
@@ -1305,12 +1311,6 @@ a {
     .video-play-button {
         width: 60px;
         height: 60px;
-    }
-
-    .quote-text {
-        order: 3;
-        font-size: 14px;
-        margin-bottom: 0;
     }
 }
 
