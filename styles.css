@@ -1299,18 +1299,18 @@ a {
     }
 
     .video-icon {
-        width: 10px;
-        height: 10px;
+        width: 9px;
+        height: 9px;
     }
 
     .video-label {
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 600;
     }
 
     .video-play-button {
-        width: 60px;
-        height: 60px;
+        width: 45px;
+        height: 45px;
     }
 }
 
