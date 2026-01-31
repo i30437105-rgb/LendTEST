@@ -340,6 +340,35 @@ transform: translateY(-6px);
 box-shadow: усиление;
 ```
 
+### Видео-баннер (блок спикера)
+
+**Десктоп:**
+```css
+width: 720px;
+height: 405px;
+border-radius: 16px;
+filter: grayscale(1) brightness(0.7) contrast(1.2);
+
+/* Overlay */
+top: 30px; left: 30px; gap: 12px;
+/* Точка */ 12px, пульсация pulse-wave 2.5s;
+/* Label */ font: Unbounded 17px/600, white;
+/* YouTube кнопка */ 80×80px, hover scale 1.15;
+```
+
+**Мобайл (768px):**
+```css
+width: 100%;
+aspect-ratio: 16 / 9;
+border-radius: 12px;
+
+/* Overlay */
+top: 20px; left: 20px; gap: 10px;
+/* Точка */ 10px;
+/* Label */ font: Unbounded 14px/600;
+/* YouTube кнопка */ 60×60px;
+```
+
 ## НАВБАР
 
 ```css

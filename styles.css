@@ -1252,22 +1252,58 @@ a {
 
     .quote-container {
         padding: 0 20px;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .quote-left {
+        flex: none;
+        width: 100%;
+    }
+
+    .quote-card-banner {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        border-radius: 12px;
+    }
+
+    .video-overlay {
+        top: 20px;
+        left: 20px;
+        gap: 10px;
+    }
+
+    .video-icon {
+        width: 10px;
+        height: 10px;
+    }
+
+    .video-label {
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .video-play-button {
+        width: 60px;
+        height: 60px;
+    }
+
+    .quote-right {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
     }
 
     .quote-heading {
         font-size: 17px;
-        font-weight: 400;
+        font-weight: 500;
         letter-spacing: -0.5px;
+        margin-bottom: 20px;
     }
 
     .quote-text {
         font-size: 14px;
-    }
-
-    .quote-avatar {
-        width: 100px;
-        height: 130px;
-        border-radius: 10px;
     }
 }
 
