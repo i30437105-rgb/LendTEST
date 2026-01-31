@@ -83,6 +83,7 @@
 
 **Параметры мобильной версии (768px):**
 - Layout: column, gap 32px
+- **Порядок:** текст сверху (order: 1), видео снизу (order: 2)
 - Видео-баннер: width 100%, aspect-ratio 16/9, border-radius 12px
 - Overlay: top 20px, left 20px, video-label 14px
 - Точка: 10px, YouTube кнопка: 60×60px

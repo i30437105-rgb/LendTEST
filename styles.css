@@ -1259,6 +1259,7 @@ a {
     .quote-left {
         flex: none;
         width: 100%;
+        order: 2;
     }
 
     .quote-card-banner {
@@ -1293,6 +1294,7 @@ a {
         flex: none;
         width: 100%;
         max-width: 100%;
+        order: 1;
     }
 
     .quote-heading {

@@ -362,6 +362,10 @@ width: 100%;
 aspect-ratio: 16 / 9;
 border-radius: 12px;
 
+/* Порядок элементов */
+.quote-right (текст): order: 1;  /* сверху */
+.quote-left (видео): order: 2;   /* снизу */
+
 /* Overlay */
 top: 20px; left: 20px; gap: 10px;
 /* Точка */ 10px;
