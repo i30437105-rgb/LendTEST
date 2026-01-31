@@ -1251,12 +1251,17 @@ a {
     }
 
     .quote-container {
-        padding: 0 20px;
+        display: flex;
         flex-direction: column;
+        padding: 0 20px;
         gap: 32px;
     }
 
     .quote-right {
+        display: contents;
+    }
+
+    .quote-content {
         display: contents;
     }
 
